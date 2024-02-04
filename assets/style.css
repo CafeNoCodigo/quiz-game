@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100&family=Salsa&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap');
 
 *{
     margin: 0;
@@ -8,29 +8,36 @@
 }
 
 body{
-    color: #fff;
-    background-color: rgb(189, 3, 112);
+    color: #163cd5;
+    background-color: #c3ffff;
 }
 
+/* GERAL */
+span{
+    color: #c3ffff;
+    text-shadow: 0 0 7px #0554F2;
+    transition: .3s;
+}
+/* FIM GERAL */
+
+/* HEADER */
 header.header{
     position: fixed;
     top: 0;
     right: 0;
     width: 100%;
-    padding: 10px 10%;
+    padding: 5px 2%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    z-index: 100;
-    background-color: transparent;
 }
 
 header .logo{
     font-size: 32px;
     text-decoration: none;
     font-weight: 700;
-    color: rgb(255, 0, 149) ;
-    filter: drop-shadow(0 0 5px #09001d);
+    color: #010A26 ;
+    filter: drop-shadow(0 0 5px #e4e4e5);
     transition: .5s;
 }
 
@@ -38,21 +45,17 @@ header .logo:hover{
     letter-spacing: 3px;
 }
 
-header .logo span{
-    color: #fff;
-}
-
 header .navbar a{
     font-size: 16px;
     text-decoration: none;
-    color: #fff;
+    color: #010A26;
     font-weight: 600;
     /* margin-left: 15px; */
     transition: .3s;
 }
 
 header .navbar a:hover, .navbar a.active{
-    color: rgb(255, 0, 149);
+    color: #0554F2;
     transform: scale(1.05);
     letter-spacing: 1px;
 }
@@ -62,63 +65,88 @@ header .navbar{
     gap: 50px;
 }
 
+header span{
+    filter: drop-shadow(0 0 10px #0554F2);
+}
+/* FIM HEADER */
+
 .main{
     min-height: 100vh;
-    background: url(media/pexels-deon-de-saldanha-10563429.jpg);
-    background-size: cover;
-    background-position: center;
     transition: .5s ease;
     pointer-events: auto;
+    background: url(media/background.jpg) no-repeat;
+    background-size: cover;
+    background-position: center;
 }
 
 .main.active{
     filter: blur(7px);
     pointer-events: none;
 }
+/* FIM MAIN */
 
 /* HOME */
 section.home{
     width: 100%;
     height: 100vh;
-    padding: 50px 24%;
+    padding: 80px 4%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     
 }
 
 .home .home-content{
     display: flex;
-    height: 90vh;
+    height: 80vh;
+    width: 120vh;
     justify-content: center;
     align-items: center;
     flex-direction: column;
 }
 
 .home .home-content h1{
-    color: #fff;
+    color: #010A26;
     font-weight: 2000;
-    font-size: 50px;
-    text-shadow: 0 0 0 rgb(0, 0, .3);
+    font-size: 40px;
+    text-shadow: 0 0 10px #c3ffff;
+    padding: 10px 10px;
+}
+
+.home .home-content h1 span:hover{
+    letter-spacing: 2px;
 }
 
 .home .home-content p{
     font-size: 18px;
     text-align: center;
-    text-shadow: 0 0 0 rgb(0, 0, .3);
     font-weight: 600;
     margin: 20px 0;
     color: #fff;
 }
 
+.home .home-content .paragrafo{
+    background-color: #0583f29c;
+    border-radius: 6px;
+    padding: 10px 10px;
+    margin-bottom: 10px;
+    box-shadow: 0 0 30px #0554F2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 section.home .home-content button{
     width: 190px;
     height: 55px;
-    background-color:rgb(255, 0, 149);
+    background-color:#0554F2;
     font-size: 30px;
-    border: 2px solid #fff;
+    border: 2px solid #010A26;
     border-radius: 6px;
     color: #fff;
     outline: none;
     font-weight: 600;
-    box-shadow: 0 0 10px rgb(255, 0, 149);
+    box-shadow: 0 0 10px #0554F2;
     cursor: pointer;
     transition: .5s;
 }
@@ -127,19 +155,19 @@ section.home .home-content button:hover{
     background-color: transparent;
     color: rgb(0, 0, 0);
     letter-spacing: 1px;
-    box-shadow: 0 0 10px rgb(0, 0, 0);
-    
+    box-shadow: 0 0 10px #000000;
+    border: 2px solid #c3ffff;
 }
 
 /* POP UP INFORMATION */
 .popup-info{
     position: absolute;
-    top: 60%;
+    top: 45%;
     left: 50%;
     transform: translate(-50%, -50%) scale(.9);
     width: 550px;
-    height: 310px;
-    background-color: #fff;
+    height: 410px;
+    background-color: #ffffffc1;
     border-radius: 6px;
     padding: 5px 2%;
     opacity: 0;
@@ -154,71 +182,95 @@ section.home .home-content button:hover{
 }
 
 .popup-info h2{
-    font-size: 40px;
-    color: rgb(255, 0, 149);
-    font-weight: bold;
+    font-size: 50px;
+    color: #0554F2;
 }
 
-.popup-info .info{
+.popup-info span.info{
     display: inline-block;
-    font-size: 15.5px;
+    font-size: 19px;
     font-weight: 500;
     margin: 4px 0;
     justify-content: center;
     align-items: center;
     color: #09001d;
     font-weight: 600;
+    text-shadow: none;
 }
 
 .popup-info .btn-group button{
     width: 150px;
-    height: 40px;
-    font-size: 15px;
-    box-shadow: 0 0 10px #09001d;
+    height: 60px;
+    font-size: 20px;
+    box-shadow: 0 0 10px #09001d9c;
     cursor: pointer;
+    border-radius: 7px;
 }
 
 .popup-info .btn-group{
     display: flex;
     justify-content: space-between;
-    /* gap: 40px; */
     padding: 20px 0;
+    margin-top: 20px;
 }
 
 .popup-info .btn-group a{
     text-decoration: none;
     color: #fff;
     /* margin-top: 10px; */
-    border: 2px solid #fff;
+    border: 2px solid #010A26;
     width: 150px;
     height: 30px;
-    background-color: rgb(255, 0, 149);
+    background-color: #0554F2;
     outline: none;
     font-weight: 600;
     text-align: center;
     transition: .5s;
-    box-shadow: 0 0 10px #09001d;
+    box-shadow: 0 0 10px #163cd5;
 }
 
 .popup-info .btn-group a:hover{
     background-color: transparent;
-    box-shadow: 0 0 10px rgb(255, 255, 255);
+    box-shadow: 0 0 10px #0554F2;
     color: #09001d;
 }
 
 .popup-info .btn-group .info-btn:nth-child(1){
     background-color: transparent;
-    color: rgb(255, 0, 149);
+    color: #0554F2;
     transition: .5s;
 }
 
 .popup-info .btn-group .info-btn:nth-child(1):hover{
-    background-color: rgb(255, 0, 149);
+    background-color: #0554F2;
     color: #fff;
 }
 
 .popup-info .btn-group .info-btn:nth-child(2):hover{
-    background-color: rgb(189, 3, 112);
-    color: rgb(255, 255, 255);
-    
+    background-color: #163cd5;
+    color: rgb(255, 255, 255); 
+}
+
+.line{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #0554F2;
+    height: 1px;
+    margin-top: 20px;
+}
+
+.conteiner{
+    /* display: flex; */
+    /* background-color: red; */
+
+}
+
+.conteiner .quiz{
+    position: absolute;
+    background-color: red;
+    height: 100vh;
+    width: 218.7vh;
+    margin-top: 0vh;
+    margin-left: 215.7vh;
 }
