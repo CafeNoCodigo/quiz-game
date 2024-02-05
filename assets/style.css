@@ -10,6 +10,7 @@
 body{
     color: #163cd5;
     background-color: #c3ffff;
+    overflow: hidden;
 }
 
 /* GERAL */
@@ -30,6 +31,8 @@ header.header{
     display: flex;
     justify-content: space-between;
     align-items: center;
+    cursor: pointer;
+    z-index: 1;
 }
 
 header .logo{
@@ -39,6 +42,7 @@ header .logo{
     color: #010A26 ;
     filter: drop-shadow(0 0 5px #e4e4e5);
     transition: .5s;
+    cursor: pointer;
 }
 
 header .logo:hover{
@@ -50,7 +54,6 @@ header .navbar a{
     text-decoration: none;
     color: #010A26;
     font-weight: 600;
-    /* margin-left: 15px; */
     transition: .3s;
 }
 
@@ -78,6 +81,22 @@ header span{
     background-size: cover;
     background-position: center;
 }
+.box-hidden{
+    display: flex;
+    height: 0vh;
+    width: 0vh;
+    background-color: red;
+    background-color: #010a26;
+    transition: .5s ease-in;
+    transition-delay: .1s; 
+}
+
+.box-hidden.active{
+    position: absolute;
+    width: 220vh;
+    height: 100vh;
+}
+
 
 .main.active{
     filter: blur(7px);
@@ -85,15 +104,117 @@ header span{
 }
 /* FIM MAIN */
 
+.conteiner{
+    display: inline-flex;
+    justify-content: space-between;
+    height: 100vh;
+    width: 200%;
+}
+
+.quiz{
+    display: flex;
+    color: #fff;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    background-color: #010a26;
+    position: relative;
+    left: -50%;
+    transition: .5s ease-in;
+    transition-delay: .1s;
+    text-shadow: 0 0 5px #c3ffff;
+    padding-top: 30px;
+    padding-bottom: 40px;
+}
+
+.quiz .box{
+    border: 2px solid #0554F2;
+    transition: .10s;
+    transition-delay: .20s;
+    padding: 20px 3%;
+}
+
+.quiz.active{
+    z-index: 100;
+    left: 0%;
+}
+
+.quiz .quiz-header{
+    text-align: center;
+    background-color: black;
+    border-radius: 7px;
+}
+
+.quiz .quiz-box{
+    display: flex;
+    flex-direction: column;
+}
+ 
+.quiz .quiz-footer{
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 2%;
+}
+
+.quiz .quiz-footer button{
+    height: 6vh;
+    width: 15vh;
+    border-radius: 7px;
+    background-color: #0554F2;
+    border: 2px solid #c3ffff;
+    cursor: pointer;
+    color: #fff;
+    transition: .5s ease;
+}
+
+.quiz .quiz-footer button:hover{
+    background-color: transparent;
+    font-weight: 700;
+}
+
+.score-box {
+    background-color: #0554F2;
+    height: 20%;
+    width: 30vh;
+    border-radius: 7px;
+    padding: 2% 0;
+    margin: 2% 0;
+    text-align: center;
+    border: 2px solid #c3ffff;
+}
+
+.box h2.question-txt{
+    border: 2px solid #0554F2;
+    font-size: 120%;
+    padding: 2% 2%;
+    width: 350px;
+    display: flex;
+}
+
+.box .option-list p{
+    border: 2px solid #0554F2;
+    font-size: 100%;
+    padding: 2% 2%;
+    margin-top: 5px;
+}
+
+.box .option-list p:hover{
+    background-color: #0554f265;
+    cursor: pointer;
+}
+
 /* HOME */
 section.home{
     width: 100%;
-    height: 100vh;
-    padding: 80px 4%;
+    padding: 3% 0%;
     display: flex;
     justify-content: center;
     align-items: center;
-    
+    position: relative;
+    left: -50%;
 }
 
 .home .home-content{
@@ -103,6 +224,7 @@ section.home{
     justify-content: center;
     align-items: center;
     flex-direction: column;
+   
 }
 
 .home .home-content h1{
@@ -122,11 +244,11 @@ section.home{
     text-align: center;
     font-weight: 600;
     margin: 20px 0;
-    color: #fff;
+    color: #000;
 }
 
 .home .home-content .paragrafo{
-    background-color: #0583f29c;
+    background-color: #0583f2cb;
     border-radius: 6px;
     padding: 10px 10px;
     margin-bottom: 10px;
@@ -141,32 +263,60 @@ section.home .home-content button{
     height: 55px;
     background-color:#0554F2;
     font-size: 30px;
-    border: 2px solid #010A26;
     border-radius: 6px;
     color: #fff;
     outline: none;
     font-weight: 600;
-    box-shadow: 0 0 10px #0554F2;
     cursor: pointer;
     transition: .5s;
+    position: relative;
+    border: none;
+}
+
+.animation{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+section.home .home-content .animation::before{
+    position: absolute;
+    content: '';
+    background-color: red;
+    width: 190px;
+    height: 55px;
+    border-radius: 6px;
+    z-index: 0;
+    animation: animate 2s linear infinite;
+    transition: 0.7s;
+}
+
+section.home .home-content .animation:hover::before{
+    width: 195px;
+    height: 60px;
 }
 
 section.home .home-content button:hover{
-    background-color: transparent;
     color: rgb(0, 0, 0);
     letter-spacing: 1px;
     box-shadow: 0 0 10px #000000;
-    border: 2px solid #c3ffff;
+    background-color: #c3ffff;
+}
+
+@keyframes animate {
+    50%{
+        filter: hue-rotate(350deg);
+    }
 }
 
 /* POP UP INFORMATION */
 .popup-info{
     position: absolute;
-    top: 45%;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%) scale(.9);
     width: 550px;
-    height: 410px;
+    height: 370px;
     background-color: #ffffffc1;
     border-radius: 6px;
     padding: 5px 2%;
@@ -210,14 +360,13 @@ section.home .home-content button:hover{
 .popup-info .btn-group{
     display: flex;
     justify-content: space-between;
-    padding: 20px 0;
-    margin-top: 20px;
+    padding: 1.5% 0;
+    margin-top: 10px;
 }
 
 .popup-info .btn-group a{
     text-decoration: none;
     color: #fff;
-    /* margin-top: 10px; */
     border: 2px solid #010A26;
     width: 150px;
     height: 30px;
@@ -227,6 +376,7 @@ section.home .home-content button:hover{
     text-align: center;
     transition: .5s;
     box-shadow: 0 0 10px #163cd5;
+    margin-top: 10px;
 }
 
 .popup-info .btn-group a:hover{
@@ -260,17 +410,25 @@ section.home .home-content button:hover{
     margin-top: 20px;
 }
 
-.conteiner{
-    /* display: flex; */
-    /* background-color: red; */
-
+.btn-close-box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
 }
 
-.conteiner .quiz{
-    position: absolute;
-    background-color: red;
-    height: 100vh;
-    width: 218.7vh;
-    margin-top: 0vh;
-    margin-left: 215.7vh;
+.btn-close{
+    width: 100px;
+    height: 40px;
+    font-size: 16px;
+    box-shadow: 0 0 10px #09001d9c;
+    cursor: pointer;
+    border-radius: 7px;
+    background-color: transparent;
+    border: 2px solid #c3ffff;
+    color: #fff;
+    justify-content: center;
+    text-shadow: 0 0 10px #c3ffff;
+    cursor: pointer;
+
 }
