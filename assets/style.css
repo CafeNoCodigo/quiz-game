@@ -19,6 +19,15 @@ span{
     text-shadow: 0 0 7px #0554F2;
     transition: .3s;
 }
+
+.line{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #0554F2;
+    height: 1px;
+    margin-top: 20px;
+}
 /* FIM GERAL */
 
 /* HEADER */
@@ -31,7 +40,6 @@ header.header{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    cursor: pointer;
     z-index: 1;
 }
 
@@ -57,7 +65,15 @@ header .navbar a{
     transition: .3s;
 }
 
-header .navbar a:hover, .navbar a.active{
+header .navbar a.sobre-section.active{
+    color: #0554F2;
+}
+
+header .navbar a.home-section.active{
+    color: #0554F2;
+}
+
+header .navbar a:hover{
     color: #0554F2;
     transform: scale(1.05);
     letter-spacing: 1px;
@@ -80,12 +96,29 @@ header span{
     background: url(media/background.jpg) no-repeat;
     background-size: cover;
     background-position: center;
+    display: flex;
+    flex-direction: column;
 }
+
+/* SOBRE */
+/* .sobre{
+    height: 100vh;
+    width: 200%;
+    background-color: red;
+    position: absolute;
+    top: 100vh;
+    transition: .20s ease-in;
+}
+
+.sobre.active{
+    top: 0vh;
+} */
+/* FIM SOBRE */
+
 .box-hidden{
     display: flex;
     height: 0vh;
     width: 0vh;
-    background-color: red;
     background-color: #010a26;
     transition: .5s ease-in;
     transition-delay: .1s; 
@@ -97,18 +130,20 @@ header span{
     height: 100vh;
 }
 
-
 .main.active{
     filter: blur(7px);
+    content: '';
     pointer-events: none;
 }
 /* FIM MAIN */
 
+/* QUIZ PART */
 .conteiner{
     display: inline-flex;
     justify-content: space-between;
     height: 100vh;
     width: 200%;
+    position: relative;
 }
 
 .quiz{
@@ -118,25 +153,38 @@ header span{
     justify-content: center;
     align-items: center;
     width: 100%;
+    height: 90vh;
     background-color: #010a26;
-    position: relative;
+    position: fixed;
     left: -50%;
     transition: .5s ease-in;
     transition-delay: .1s;
     text-shadow: 0 0 5px #c3ffff;
     padding-top: 30px;
-    padding-bottom: 40px;
+    opacity: 0;
+    
+    /* padding-bottom: 80px; */
 }
 
 .quiz .box{
     border: 2px solid #0554F2;
-    transition: .10s;
-    transition-delay: .20s;
     padding: 20px 3%;
+    opacity: 0;
+    pointer-events: none;
+    transform: scale(.9);
+}
+
+.quiz .box.active{
+    transition: .40s ease;
+    transition-delay: 0.80s;
+    opacity: 1;
+    pointer-events: auto;
+    transform: scale(1);
 }
 
 .quiz.active{
-    z-index: 100;
+    z-index: 1;
+    opacity: 1;
     left: 0%;
 }
 
@@ -163,15 +211,20 @@ header span{
     height: 6vh;
     width: 15vh;
     border-radius: 7px;
-    background-color: #0554F2;
+    background-color: transparent;
     border: 2px solid #c3ffff;
     cursor: pointer;
     color: #fff;
+    pointer-events: auto;
     transition: .5s ease;
 }
 
+.quiz-footer button.desative{
+    pointer-events: none;
+}
+
 .quiz .quiz-footer button:hover{
-    background-color: transparent;
+    background-color: #0554F2;
     font-weight: 700;
 }
 
@@ -199,22 +252,82 @@ header span{
     font-size: 100%;
     padding: 2% 2%;
     margin-top: 5px;
+    transition: .3s ease;
+}
+
+.box .option-list.answerUser{
+    pointer-events: none;
+}
+
+.box .option-list.answerUser2{
+    pointer-events: auto;
+}
+
+.box .option-list p.correct{
+    border: 2px solid greenyellow;
+    
+    /* pointer-events: none; */
+}
+
+.box .option-list p.correct:hover{
+    border: 2px solid greenyellow;
+}
+
+.box .option-list p #wrong{
+    border: 2px solid red;
+    /* pointer-events: none; */
 }
 
 .box .option-list p:hover{
     background-color: #0554f265;
+    border-color: #0554f265;
     cursor: pointer;
 }
+
+.btn-close-box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.btn-close{
+    width: 100px;
+    height: 40px;
+    font-size: 16px;
+    box-shadow: 0 0 10px #09001d9c;
+    cursor: pointer;
+    border-radius: 7px;
+    background-color: transparent;
+    border: 2px solid #c3ffff;
+    color: #fff;
+    justify-content: center;
+    text-shadow: 0 0 10px #c3ffff;
+    cursor: pointer;
+    pointer-events: none;
+    opacity: 0;
+    transform: scale(.9);
+}
+
+.btn-close.active{
+    transition: .40s ease;
+    transition-delay: 0.85s;
+    opacity: 1;
+    transform: scale(1);
+    pointer-events: auto;
+}
+/* FIM QUIZ PART */
 
 /* HOME */
 section.home{
     width: 100%;
-    padding: 3% 0%;
+    padding: 3% 4%;
     display: flex;
     justify-content: center;
     align-items: center;
-    position: relative;
-    left: -50%;
+    position: fixed;
+    background-color: transparent;
+    height: 100vh;
 }
 
 .home .home-content{
@@ -248,7 +361,7 @@ section.home{
 }
 
 .home .home-content .paragrafo{
-    background-color: #0583f2cb;
+    background-color: #b8deffd7;
     border-radius: 6px;
     padding: 10px 10px;
     margin-bottom: 10px;
@@ -308,6 +421,7 @@ section.home .home-content button:hover{
         filter: hue-rotate(350deg);
     }
 }
+/* FIM HOME */
 
 /* POP UP INFORMATION */
 .popup-info{
@@ -399,36 +513,4 @@ section.home .home-content button:hover{
 .popup-info .btn-group .info-btn:nth-child(2):hover{
     background-color: #163cd5;
     color: rgb(255, 255, 255); 
-}
-
-.line{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #0554F2;
-    height: 1px;
-    margin-top: 20px;
-}
-
-.btn-close-box{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 10px;
-}
-
-.btn-close{
-    width: 100px;
-    height: 40px;
-    font-size: 16px;
-    box-shadow: 0 0 10px #09001d9c;
-    cursor: pointer;
-    border-radius: 7px;
-    background-color: transparent;
-    border: 2px solid #c3ffff;
-    color: #fff;
-    justify-content: center;
-    text-shadow: 0 0 10px #c3ffff;
-    cursor: pointer;
-
 }
