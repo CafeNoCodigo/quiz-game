@@ -1,3 +1,4 @@
+//Área das variaveis que comunicam com o HTML
 const startBtn = document.querySelector('.start-btn');
 const popupInfo = document.querySelector('.popup-info');
 const exitBtn = document.querySelector('.exit-btn');
@@ -12,6 +13,8 @@ const homeBtn = document.querySelector('.home-section');
 const quizBox = document.querySelector('.box');
 const nextBtn = document.querySelector('.btn-next');
 const optionList = document.querySelector('.option-list');
+const quizFooter = document.querySelector('.quiz-footer-count');
+const scoreBox = document.querySelector('.score-box');
 
 startBtn.onclick = () => {
     popupInfo.classList.add('active');
@@ -30,9 +33,10 @@ continueBtn.onclick = () => {
     boxHidden.classList.add('active');
     quizBox.classList.add('active');
     btnClose.classList.add('active');
-    nextBtn.classList.remove('desative');
-    
-    showQuestion(0);
+    nextBtn.classList.add('desative');
+    let labelScore = `<p class="score">Pontuação: ${questionCount} / ${questions.length}</p>`;
+    scoreBox.innerHTML = labelScore;
+    showQuestion(0);   
 }
 
 btnClose.onclick = () => {
@@ -58,16 +62,16 @@ homeBtn.onclick = () => {
 var questionCount = 0;
 
 nextBtn.onclick = () => {
+    nextBtn.classList.remove('active');
+    nextBtn.classList.add('desative');
     questionCount++;
+
     if(questionCount <= questions.length - 1){
         showQuestion(questionCount);
     }else{
         nextBtn.classList.add('desative');
         alert('NÍVEL TERMINADO');
     }
-    
-    optionList.classList.remove('answerUser');
-    
 }
 
 //Recebe o numero da questão através de um array e mostra essa questão
@@ -87,17 +91,38 @@ function showQuestion(index){
     for(let i = 0; i < option.length; i++){
         option[i].setAttribute('onclick', 'optionSelected(this)');
     }
+
+    //Question count on the quiz footer
+    let labelCountQuestion = `<p class="count">${questionCount + 1} de ${questions.length} questões</p>`;
+    quizFooter.innerHTML = labelCountQuestion;        
 }
 
+var scoreControl = 0;
 function optionSelected(answer){
     let userAnswer = answer.textContent;
+    nextBtn.classList.remove('desative');
+    nextBtn.classList.add('active');
     let correctAnswer = questions[questionCount].answer;
+    let allOptions = optionList.children.length;
+
     if(userAnswer == correctAnswer){
-        optionList.classList.add('answerUser');
+        scoreControl++;
+        //Score count
+        let labelScore = `<p class="score">Pontuação: ${scoreControl} / ${questions.length}</p>`;
+        scoreBox.innerHTML = labelScore;
         answer.classList.add('correct');
     }else{
-        optionList.classList.add('answerUser');
-        // answer.classList.add('correct');
-        // userAnswer.id = "wrong";
+        answer.classList.add('wrong');
+
+        //Show the correct answer
+        for(i = 0; i < allOptions; i++){
+            if(optionList.children[i].textContent == correctAnswer){
+                optionList.children[i].setAttribute('class', 'option correct');
+            }
+        }
+    }
+
+    for(i = 0; i < allOptions; i++){
+        optionList.children[i].classList.add('answerUser');
     }
 }
